@@ -24,18 +24,24 @@ static inline CGGlyph REGGlyphViewGetGlyphFromUnicodeChar(UTF32Char unicode, CTF
 @implementation REFGlyphView
 
 - (void)setGlyphName:(NSString *)aGlyphName {
-    _glyphName = aGlyphName;
-    [self setNeedsDisplayInRect:[self bounds]];
+    if (_glyphName != aGlyphName) {
+        _glyphName = aGlyphName;
+        [self setNeedsDisplayInRect:[self bounds]];
+    }
 }
 
 - (void)setUnicode:(UTF32Char)anUnicode {
-    _unicode = anUnicode;
-    [self setNeedsDisplayInRect:[self bounds]];
+    if (_unicode != anUnicode) {
+        _unicode = anUnicode;
+        [self setNeedsDisplayInRect:[self bounds]];
+    }
 }
 
 - (void)setFont:(NSFont *)aFont {
-    _font = aFont;
-    [self setNeedsDisplayInRect:[self bounds]];
+    if (_font != aFont) {
+        _font = aFont;
+        [self setNeedsDisplayInRect:[self bounds]];
+    }
 }
 
 - (CGFloat)scale {
