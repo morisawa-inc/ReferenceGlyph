@@ -7,6 +7,7 @@
 //
 
 #import "REFGlyphView.h"
+#import "REFGlyphNameResolver.h"
 
 static inline CGGlyph REGGlyphViewGetGlyphFromUnicodeChar(UTF32Char unicode, CTFontRef font) {
     CGGlyph glyph = 0;
@@ -26,6 +27,13 @@ static inline CGGlyph REGGlyphViewGetGlyphFromUnicodeChar(UTF32Char unicode, CTF
 - (void)setGlyphName:(NSString *)aGlyphName {
     if (_glyphName != aGlyphName) {
         _glyphName = aGlyphName;
+        [self setNeedsDisplayInRect:[self bounds]];
+    }
+}
+
+- (void)setProductionGlyphName:(NSString *)aProductionGlyphName {
+    if (_productionGlyphName != aProductionGlyphName) {
+        _productionGlyphName = aProductionGlyphName;
         [self setNeedsDisplayInRect:[self bounds]];
     }
 }
@@ -63,7 +71,14 @@ static inline CGGlyph REGGlyphViewGetGlyphFromUnicodeChar(UTF32Char unicode, CTF
         
         CGGlyph glyph = 0;
         if (glyph == 0 && _unicode > 0) glyph = REGGlyphViewGetGlyphFromUnicodeChar(_unicode, (__bridge CTFontRef)_font);
-        if (glyph == 0 && _glyphName) glyph = CGFontGetGlyphWithGlyphName(font, (CFStringRef)[self glyphName]);
+        if (glyph == 0 && _productionGlyphName) glyph = CGFontGetGlyphWithGlyphName(font, (CFStringRef)_productionGlyphName);
+        if (glyph == 0 && _glyphName) {
+            if ([_dataSource respondsToSelector:@selector(currentGlyphsFontObjectForGlyphView:)]) {
+                GSFont *glyphsFont = [_dataSource currentGlyphsFontObjectForGlyphView:self];
+                NSString *alternativeGlyphName = ([_glyphName hasPrefix:@"cid"]) ? [[REFGlyphNameResolver sharedResolver] niceGlyphNameByConvertingFromCIDGlyphName:_glyphName forFont:glyphsFont] : [[REFGlyphNameResolver sharedResolver] CIDGlyphNameByConvertingFromNiceGlyphName:_glyphName forFont:glyphsFont];
+                if (alternativeGlyphName) glyph = CGFontGetGlyphWithGlyphName(font, (CFStringRef)alternativeGlyphName);
+            }
+        }
         
         int advance = 0;
         CGFontGetGlyphAdvances(font, &glyph, 1, &advance);

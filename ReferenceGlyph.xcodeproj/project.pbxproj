@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E773C4D11DC37C2C00BF8D31 /* REFGlyphView.m in Sources */ = {isa = PBXBuildFile; fileRef = E773C4D01DC37C2C00BF8D31 /* REFGlyphView.m */; };
+		E7973FDB1FE63D890009EAE4 /* REFGlyphNameResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = E7973FDA1FE63D890009EAE4 /* REFGlyphNameResolver.m */; };
 		E7A536731FD2D72D00E7615E /* REFPaletteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7A536721FD2D72C00E7615E /* REFPaletteView.xib */; };
 		E7A536861FD2FFC300E7615E /* REFFontInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A536801FD2FFC300E7615E /* REFFontInstance.m */; };
 		E7A536871FD2FFC300E7615E /* REFFontPopUpButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A536841FD2FFC300E7615E /* REFFontPopUpButton.m */; };
@@ -20,6 +21,8 @@
 /* Begin PBXFileReference section */
 		E773C4CF1DC37C2C00BF8D31 /* REFGlyphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REFGlyphView.h; sourceTree = "<group>"; };
 		E773C4D01DC37C2C00BF8D31 /* REFGlyphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REFGlyphView.m; sourceTree = "<group>"; };
+		E7973FD91FE63D890009EAE4 /* REFGlyphNameResolver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = REFGlyphNameResolver.h; sourceTree = "<group>"; };
+		E7973FDA1FE63D890009EAE4 /* REFGlyphNameResolver.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = REFGlyphNameResolver.m; sourceTree = "<group>"; };
 		E7A536721FD2D72C00E7615E /* REFPaletteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = REFPaletteView.xib; sourceTree = "<group>"; };
 		E7A536801FD2FFC300E7615E /* REFFontInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REFFontInstance.m; sourceTree = "<group>"; };
 		E7A536811FD2FFC300E7615E /* REFFontPopUpButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REFFontPopUpButton.h; sourceTree = "<group>"; };
@@ -76,6 +79,8 @@
 		E7FBB2AF1C574D98003E8DC1 /* ReferenceGlyph */ = {
 			isa = PBXGroup;
 			children = (
+				E7973FD91FE63D890009EAE4 /* REFGlyphNameResolver.h */,
+				E7973FDA1FE63D890009EAE4 /* REFGlyphNameResolver.m */,
 				E773C4CF1DC37C2C00BF8D31 /* REFGlyphView.h */,
 				E773C4D01DC37C2C00BF8D31 /* REFGlyphView.m */,
 				E7A536831FD2FFC300E7615E /* REFFontInstance.h */,
@@ -170,6 +175,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7973FDB1FE63D890009EAE4 /* REFGlyphNameResolver.m in Sources */,
 				E7A536861FD2FFC300E7615E /* REFFontInstance.m in Sources */,
 				E7FBB2B61C574D99003E8DC1 /* ReferenceGlyphPalettePlugin.m in Sources */,
 				E773C4D11DC37C2C00BF8D31 /* REFGlyphView.m in Sources */,

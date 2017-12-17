@@ -23,7 +23,7 @@ static inline NSString * REFLocalizedString(NSString *key, NSString *comment) {
 - (NSDocument *)currentFontDocument;
 @end
 
-@interface ReferenceGlyphPalettePlugin ()
+@interface ReferenceGlyphPalettePlugin () <REFGlyphViewDataSource>
 @property (nonatomic) IBOutlet REFGlyphView *glyphView;
 @property (weak) IBOutlet REFFontPopUpButton *popupButton;
 @property (nonatomic) NSFont *font;
@@ -50,6 +50,7 @@ static inline NSString * REFLocalizedString(NSString *key, NSString *comment) {
 
 - (void)awakeFromNib {
     [_popupButton setSelection:[self defaultFont]];
+    [_glyphView setDataSource:self];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidUpdateInterface:) name:@"GSUpdateInterface" object:nil];
 }
 
@@ -86,16 +87,22 @@ static inline NSString * REFLocalizedString(NSString *key, NSString *comment) {
         if ([[[NSRegularExpression alloc] initWithPattern:@"^cid[0-9]{5}$" options:0 error:nil] rangeOfFirstMatchInString:baseGlyphName options:0 range:NSMakeRange(0, [baseGlyphName length])].location != NSNotFound) {
             [_glyphView setGlyphName:baseGlyphName];
         } else {
-            [_glyphView setGlyphName:[glyph production]];
+            [_glyphView setGlyphName:[glyph name]];
         }
+        [_glyphView setProductionGlyphName:[glyph production]];
     } else {
         [_glyphView setUnicode:0];
         [_glyphView setGlyphName:nil];
+        [_glyphView setProductionGlyphName:nil];
     }
 }
 
 - (void)fontPopUpButton:(REFFontPopUpButton *)fontPopUpButton didChangeSelection:(NSFont *)font {
     [_glyphView setFont:font];
+}
+
+- (GSFont *)currentGlyphsFontObjectForGlyphView:(REFGlyphView *)glyphView {
+    return [[[self layer] parent] parent];
 }
 
 @end
