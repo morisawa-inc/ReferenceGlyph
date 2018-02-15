@@ -78,6 +78,7 @@ static inline CGGlyph REGGlyphViewGetGlyphFromUnicodeChar(UTF32Char unicode, CTF
                 NSString *alternativeGlyphName = ([_glyphName hasPrefix:@"cid"]) ? [[REFGlyphNameResolver sharedResolver] niceGlyphNameByConvertingFromCIDGlyphName:_glyphName forFont:glyphsFont] : [[REFGlyphNameResolver sharedResolver] CIDGlyphNameByConvertingFromNiceGlyphName:_glyphName forFont:glyphsFont];
                 if (alternativeGlyphName) glyph = CGFontGetGlyphWithGlyphName(font, (CFStringRef)alternativeGlyphName);
             }
+            if (glyph == 0) glyph = CGFontGetGlyphWithGlyphName(font, (CFStringRef)_glyphName);
         }
         
         int advance = 0;
