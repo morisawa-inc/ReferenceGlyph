@@ -7,10 +7,13 @@
 //
 
 #import "ReferenceGlyphPalettePlugin.h"
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnullability-completeness"
 #import <GlyphsCore/GlyphsCore.h>
 #import <GlyphsCore/GSGlyph.h>
 #import <GlyphsCore/GSLayer.h>
 #import <GlyphsCore/GSWindowControllerProtocol.h>
+#pragma clang diagnostic pop
 #import "REFGlyphView.h"
 #import "REFFontPopUpButton.h"
 

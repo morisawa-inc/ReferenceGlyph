@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17156" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment version="1080" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
-        <capability name="box content view" minToolsVersion="7.0"/>
+        <deployment version="101000" identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17156"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,11 +15,11 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView misplaced="YES" id="1">
+        <customView id="1">
             <rect key="frame" x="0.0" y="0.0" width="164" height="174"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <popUpButton verticalHuggingPriority="750" misplaced="YES" id="HDc-X7-PJM" customClass="REFFontPopUpButton">
+                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HDc-X7-PJM" customClass="REFFontPopUpButton">
                     <rect key="frame" x="8" y="3" width="148" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <popUpButtonCell key="cell" type="roundRect" title="Item 1" bezelStyle="roundedRect" alignment="justified" controlSize="mini" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="eNH-kN-Un9" id="eYX-XY-HFf">
@@ -38,7 +37,7 @@
                         <outlet property="delegate" destination="-2" id="iIi-55-XXz"/>
                     </connections>
                 </popUpButton>
-                <box misplaced="YES" boxType="custom" cornerRadius="4" id="Lbt-nf-Zyl">
+                <box fixedFrame="YES" boxType="custom" cornerRadius="4" translatesAutoresizingMaskIntoConstraints="NO" id="Lbt-nf-Zyl">
                     <rect key="frame" x="8" y="22" width="148" height="148"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView" id="w9w-Nm-xMw" customClass="REFGlyphView">
