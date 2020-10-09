@@ -90,7 +90,6 @@ static inline CGGlyph REGGlyphViewGetGlyphFromUnicodeChar(UTF32Char unicode, CTF
             CGPointMake(frame.origin.x, frame.origin.y + frame.size.height * -CGFontGetDescent(font) / CGFontGetUnitsPerEm(font)),
             CGPointMake(frame.origin.x + frame.size.width, frame.origin.y + frame.size.height * -CGFontGetDescent(font) / CGFontGetUnitsPerEm(font))
         };
-        CGContextSetGrayStrokeColor(context, 0.0, 0.1);
         CGContextStrokeLineSegments(context, baselines, 2);
         CGContextSetRGBStrokeColor(context, 0.0, 0.68, 0.937, 1.0);
         CGContextStrokeRect(context, frame);
@@ -101,7 +100,7 @@ static inline CGGlyph REGGlyphViewGetGlyphFromUnicodeChar(UTF32Char unicode, CTF
         CGContextSetTextDrawingMode(context, kCGTextFill);
         CGContextSetTextMatrix(context, CGAffineTransformIdentity);
         CGContextSetTextPosition(context, 0, 0);
-        CGContextSetGrayFillColor(context, 0.0, 1.0);
+        CGContextSetFillColorWithColor(context, [[NSColor textColor] CGColor]);
         CGContextShowGlyphsAtPositions(context, &glyph, &position, 1);
         CGFontRelease(font);
         CGContextRestoreGState(context);
