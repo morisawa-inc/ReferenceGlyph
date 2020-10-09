@@ -291,10 +291,10 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CONFIGURATION_BUILD_DIR = "~/Library/Application Support/Glyphs/Plugins";
+				CONFIGURATION_BUILD_DIR = "$(HOME)/Library/Application Support/Glyphs/Plugins";
 				DEPLOYMENT_LOCATION = YES;
 				DEVELOPMENT_TEAM = "";
-				DSTROOT = "~/Library/Application Support/Glyphs/Plugins";
+				DSTROOT = "$(HOME)/Library/Application Support/Glyphs/Plugins";
 				FRAMEWORK_SEARCH_PATHS = "$(SYSTEM_APPS_DIR)/Glyphs.app/Contents/Frameworks";
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
 				INSTALL_PATH = /;
