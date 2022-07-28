@@ -18,7 +18,7 @@ A Glyphs plugin that shows a reference glyph from the installed fonts in the pal
 
 ## Requirements
 
-Tested with Glyphs 2.3 on OS X 10.11.
+Tested with Glyphs 2.3 on OS X 10.11. Also supports Glyphs 3.
 
 ## License
 
