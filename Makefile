@@ -1,6 +1,9 @@
+CURRENT_DIR  := $(shell pwd)
+PROJECT_NAME := $(shell basename "$(CURRENT_DIR)")
+
 .PHONY: plugin
 plugin:
-	xcodebuild
+	xcodebuild -target $(PROJECT_NAME)3
 	command -v postbuild-codesign >/dev/null 2>&1 && postbuild-codesign
 	command -v postbuild-notarize >/dev/null 2>&1 && postbuild-notarize
 	cp -r build/Release/*.glyphsPalette .
@@ -11,8 +14,6 @@ clean:
 	rm -rf *.glyphsPalette
 
 archive: clean plugin
-	CURRENT_DIR=$$(pwd); \
-	PROJECT_NAME=$$(basename "$${CURRENT_DIR}"); \
-	git archive -o "build/Release/$${PROJECT_NAME}-$$(git rev-parse --short HEAD).zip" HEAD
+	git archive -o "build/Release/$(PROJECT_NAME)-$$(git rev-parse --short HEAD).zip" HEAD
 
 dist: clean plugin archive

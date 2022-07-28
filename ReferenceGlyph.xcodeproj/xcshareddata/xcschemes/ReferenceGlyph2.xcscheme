@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E7FBB2A91C574D98003E8DC1"
                BuildableName = "ReferenceGlyph.glyphsPalette"
-               BlueprintName = "ReferenceGlyph"
+               BlueprintName = "ReferenceGlyph2"
                ReferencedContainer = "container:ReferenceGlyph.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -42,15 +42,14 @@
       allowLocationSimulation = "YES">
       <PathRunnable
          runnableDebuggingMode = "0"
-         BundleIdentifier = "com.GeorgSeifert.Glyphs2"
-         FilePath = "/Applications/Glyphs.app">
+         FilePath = "/Applications/Glyphs Debuggable.app">
       </PathRunnable>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E7FBB2A91C574D98003E8DC1"
             BuildableName = "ReferenceGlyph.glyphsPalette"
-            BlueprintName = "ReferenceGlyph"
+            BlueprintName = "ReferenceGlyph2"
             ReferencedContainer = "container:ReferenceGlyph.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -66,7 +65,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E7FBB2A91C574D98003E8DC1"
             BuildableName = "ReferenceGlyph.glyphsPalette"
-            BlueprintName = "ReferenceGlyph"
+            BlueprintName = "ReferenceGlyph2"
             ReferencedContainer = "container:ReferenceGlyph.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
