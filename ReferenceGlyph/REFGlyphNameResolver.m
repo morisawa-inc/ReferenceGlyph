@@ -12,11 +12,41 @@
 
 #include <sys/stat.h>
 
-@interface GSExportInstanceOperation : NSOperation
-- (instancetype)initWithFont:(GSFont *)aFont instance:(GSInstance *)anInstance format:(int)aFormat;
-- (NSString *)CIDRescoureName;      // (be aware to the spelling)
+@protocol GSExportInstanceOperationProtocol <NSObject>
+@required
+@property (strong) GSFont *font;
+@property (strong) GSInstance *instance;
 - (NSString *)CIDShortRescoureName;
+@optional
+- (instancetype)initWithFont:(GSFont *)aFont instance:(GSInstance *)anInstance format:(int)aFormat;
 @end
+
+# pragma mark - G2/G3 comaptiblity
+
+@interface GSExportInstanceOperation : NSOperation<GSExportInstanceOperationProtocol>
+@end
+
+static inline GSExportInstanceOperation * MakeGSExportInstanceOperation(GSFont *font, GSInstance *instance, int format) {
+    GSExportInstanceOperation *operation = [NSClassFromString(@"GSExportInstanceOperation") alloc];
+    if ([operation respondsToSelector:@selector(initWithFont:instance:format:)]) {
+        operation = [operation initWithFont:font instance:instance format:format];
+    } else {
+        operation = [operation init];
+        [operation setFont:font];
+        [operation setInstance:instance];
+    }
+    return operation;
+}
+
+static inline NSString * MakePathForResource(NSString *resourcePath, NSString *ofType) {
+    for (NSString *className in @[@"GSFont", @"GlyphsFileFormatOTF"]) {
+        NSString *resolvedPath = [[NSBundle bundleForClass:NSClassFromString(className)] pathForResource:resourcePath ofType:ofType];
+        if (resolvedPath) return resolvedPath;
+    }
+    return nil;
+}
+
+#pragma mark -
 
 static BOOL REFGlyphNameResolverEnumerateLinesOfFileUsingBlock(NSString *aPath, NSStringEncoding anEncoding, void(^aBlock)(NSString *line, BOOL *stop), NSError **anError) {
     NSError *error = nil;
@@ -53,13 +83,8 @@ static BOOL REFGlyphNameResolverEnumerateLinesOfFileUsingBlock(NSString *aPath, 
     return self;
 }
 
-- (NSString *)CIDResourceNameForFont:(GSFont *)aFont {
-    GSExportInstanceOperation *operation = [[NSClassFromString(@"GSExportInstanceOperation") alloc] initWithFont:aFont instance:nil format:0];
-    return [operation CIDRescoureName];
-}
-
 - (NSString *)CIDShortResourceNameForFont:(GSFont *)aFont {
-    GSExportInstanceOperation *operation = [[NSClassFromString(@"GSExportInstanceOperation") alloc] initWithFont:aFont instance:nil format:0];
+    GSExportInstanceOperation *operation = MakeGSExportInstanceOperation(aFont, nil, 0);
     return [operation CIDShortRescoureName];
 }
 
@@ -86,7 +111,7 @@ static BOOL REFGlyphNameResolverEnumerateLinesOfFileUsingBlock(NSString *aPath, 
                 return;
             }
         }
-        NSString *path = [[NSBundle bundleForClass:NSClassFromString(@"GlyphsFileFormatOTF")] pathForResource:[NSString stringWithFormat:@"MapFile%@", aCIDShortResourceName] ofType:@"txt"];
+        NSString *path = MakePathForResource([NSString stringWithFormat:@"MapFile%@", aCIDShortResourceName], @"txt");
         if (path) {
             __block NSMutableDictionary<NSString *, NSString *> *mutableFromCIDGlyphNameToNiceGlyphNameDictionary = [[NSMutableDictionary alloc] initWithCapacity:0];
             __block NSMutableDictionary<NSString *, NSString *> *mutableFromNiceGlyphNameToCIDGlyphNameDictionary = [[NSMutableDictionary alloc] initWithCapacity:0];
