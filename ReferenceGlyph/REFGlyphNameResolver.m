@@ -17,6 +17,7 @@
 @property (strong) GSFont *font;
 @property (strong) GSInstance *instance;
 - (NSString *)CIDShortRescoureName;
+- (NSString *)CIDShortResourceName;
 @optional
 - (instancetype)initWithFont:(GSFont *)aFont instance:(GSInstance *)anInstance format:(int)aFormat;
 @end
@@ -85,6 +86,8 @@ static BOOL REFGlyphNameResolverEnumerateLinesOfFileUsingBlock(NSString *aPath, 
 
 - (NSString *)CIDShortResourceNameForFont:(GSFont *)aFont {
     GSExportInstanceOperation *operation = MakeGSExportInstanceOperation(aFont, nil, 0);
+    if ([operation respondsToSelector:@selector(CIDShortResourceName)])
+        return [operation CIDShortResourceName];
     return [operation CIDShortRescoureName];
 }
 
