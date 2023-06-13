@@ -22,4 +22,4 @@ Tested with Glyphs 2.3 on OS X 10.11. Also supports Glyphs 3.
 
 ## License
 
-TBD
+Apache License 2.0
